@@ -4,10 +4,14 @@ import { shallow } from 'enzyme';
 import CommentBox from 'components/CommentBox';
 import CommentList from 'components/CommentList';
 
-let wrapped;
+let wrapped; // for scope problems
 
 beforeEach(() => {
   wrapped = shallow(<App />);
+});
+
+afterEach(() => {
+  wrapped.unmount();
 });
 
 it('shows a comment box', () => {
