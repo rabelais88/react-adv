@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import * as actions from 'actions';
+import React, { useState, useReducer, useContext } from 'react';
+// import { connect } from 'react-redux';
+// import * as actions from 'actions';
+import commentReducers from 'reducers/comments';
+import { saveComment } from 'actions';
 
 const CommentBox = props => {
   const [comment, setComment] = useState('')
+  const [state, dispatch] = useReducer(commentReducers, []);
 
   const handleChange = e => setComment(e.target.value);
   const handleSubmit = e => {
     e.preventDefault();
-    props.saveComment(comment);
+    dispatch(saveComment(comment));
     setComment('');
   }
 
@@ -18,18 +21,11 @@ const CommentBox = props => {
       <textarea value={comment} onChange={handleChange} />
       <div>
         <p>{JSON.stringify(comment)}</p>
-        <p>{JSON.stringify(props.comments)}</p>
+        <p>{JSON.stringify(state)}</p>
         <button>submit comment</button>
       </div>
     </form>
   )
 }
 
-const mapStateToProps = state => ({
-  comments: state.comments
-})
-
-export default connect(
-  mapStateToProps,
-  { saveComment: actions.saveComment }
-)(CommentBox);
+export default CommentBox;

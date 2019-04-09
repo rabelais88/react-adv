@@ -1,6 +1,6 @@
-import { ADD_COMMENT } from '../constants';
+import { SAVE_COMMENT } from './types';
 
-export const addComment = newComment => ({
-  type: ADD_COMMENT,
+export const saveComment = newComment => ({
+  type: SAVE_COMMENT,
   payload: newComment
 });
