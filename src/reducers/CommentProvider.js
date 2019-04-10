@@ -5,12 +5,14 @@ import commentsReducer from './comments';
 const CommentContext = createContext();
 
 const CommentProvider = ({ children }) => {
-  const contextValue = useReducer(commentsReducer, []);
+  const [state, dispatch] = useReducer(commentsReducer, []);
   return (
-    <CommentContext.Provider value={contextValue}>
+    <CommentContext.Provider value={{state, dispatch}}>
       {children}
     </CommentContext.Provider>
   );
 }
 
+
+export { CommentContext };
 export default CommentProvider;
