@@ -6,7 +6,7 @@ import reducers from 'reducers';
 
 export default (props) => {
   return (
-  <Provider store={createStore(reducers, applyMiddleware(thunk))}>
+  <Provider store={createStore(reducers, props.initialState ? props.initialState : applyMiddleware(thunk))}>
     {props.children}
   </Provider>
   )
