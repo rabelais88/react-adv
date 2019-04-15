@@ -8,7 +8,6 @@ const renderComments = comments => {
 
 const CommentList = props => {
   useEffect(() => {
-    console.log('component loaded');
     props.fetchComments();
   }, []);
   return (
