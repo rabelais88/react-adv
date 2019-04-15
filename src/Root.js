@@ -4,10 +4,10 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from 'reducers';
 
-export default (props) => {
+export default ({children, initialState}) => {
   return (
-  <Provider store={createStore(reducers, props.initialState ? props.initialState : applyMiddleware(thunk))}>
-    {props.children}
+  <Provider store={createStore(reducers, initialState ? initialState : applyMiddleware(thunk))}>
+    {children}
   </Provider>
   )
 }

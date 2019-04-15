@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { fetchComments } from 'actions';
 
 const renderComments = comments => {
-  return comments.map((comment, idx) => <li key={idx}>{comment}</li>);
+  return comments.map((comment, idx) => <li key={idx}>{JSON.stringify(comment)}</li>);
 };
 
 const CommentList = props => {
+  useEffect(() => {
+    console.log('component loaded');
+    props.fetchComments();
+  }, []);
   return (
     <div>
       <ul>{renderComments(props.comments)}</ul>
@@ -19,5 +24,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {}
+  { fetchComments }
 )(CommentList);
